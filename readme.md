@@ -27,12 +27,10 @@
 и улучшения здравоохранения.
 
 ## 5. Use-Case диаграмма
-![](/storage/Daniil/work/lab/bd/course_proj/src/resources/use-case.svg)
-<!-- ![](resources/use-case.svg) -->
+![](resources/use-case.svg)
 
 ## 6. ER диаграмма сущностей
-![](/storage/Daniil/work/lab/bd/course_proj/src/resources/er.svg)
-<!-- ![](resources/er.svg) -->
+![](resources/er.svg)
 
 ## 7. Пользовательские сценарии
 
@@ -122,10 +120,8 @@
 ## 8. Формализация бизнес-правил
 
 ### Отображение информации
-![](/storage/Daniil/work/lab/bd/course_proj/src/resources/bpmn-show.svg)
-<!-- ![](resources/bpmn-show.svg) -->
+![](resources/bpmn-show.svg)
 
 ### Работа с заявками
-![](/storage/Daniil/work/lab/bd/course_proj/src/resources/bpmn-request.svg)
-<!-- ![](resources/bpmn-request.svg) -->
+![](resources/bpmn-request.svg)
 
