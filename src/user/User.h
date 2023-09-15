@@ -15,6 +15,8 @@ class User
 
         User &operator = (const User &user);
         bool operator < (const User &user);
+        bool operator == (const User &user) const;
+        bool operator != (const User &user) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, Name, _name);

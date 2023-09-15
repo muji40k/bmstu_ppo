@@ -18,11 +18,16 @@ class Place : public TimeChangeable
 
         Place &operator = (const Place &place);
 
+        bool operator == (const Place &place) const;
+        bool operator != (const Place &place) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, Type, _type);
         DEFAULT_SG(std::string, Name, _name);
         DEFAULT_SG(double, Area, _area);
         DEFAULT_SG(std::string, Continent, _continent);
+
+        const std::time_t &getTime(void) const;
 
         Property<Place, unsigned long long> id;
         Property<Place, std::string> type;

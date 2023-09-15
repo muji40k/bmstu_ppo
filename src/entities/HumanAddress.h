@@ -18,7 +18,11 @@ class HumanAddress : public TimeChangeable
 
         HumanAddress &operator = (const HumanAddress &ha);
 
+        bool operator == (const HumanAddress &ha) const;
+        bool operator != (const HumanAddress &ha) const;
+
         virtual void setTime(const std::time_t &time) override;
+        const std::time_t &getTime(void) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         void setCurrentPlace(const Place &place);

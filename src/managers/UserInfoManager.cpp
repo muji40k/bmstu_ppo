@@ -71,6 +71,10 @@ bool UserInfoManager::isHuman(std::string hash) const
 UserMapper::Map UserInfoManager::getHuman(std::string hash) const
 {
     UserHuman uh = this->getUserHuman(hash);
+
+    if (!uh.isHuman())
+        throw CALL_EX(NotHumanUserInfoManagerException);
+
     Human human = uh.human;
     UserMapper::Map out;
 
@@ -84,7 +88,7 @@ UserHuman UserInfoManager::getUserHuman(std::string hash) const
     auto login = this->context.getLoginManager();
 
     if (!login->isAuthenticated(hash))
-        throw CALL_EX(NotHumanUserInfoManagerException);
+        throw CALL_EX(NotAuthenticatedUserInfoManagerException);
 
     const User &user = login->getAuthenticated(hash);
     auto repo = this->context.getRepositoryContext().getUserHumanRepository();

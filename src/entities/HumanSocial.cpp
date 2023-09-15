@@ -44,3 +44,18 @@ HumanSocial &HumanSocial::operator = (const HumanSocial &hc)
     return *this;
 }
 
+bool HumanSocial::operator == (const HumanSocial &hc) const
+{
+    return this->_id == hc._id && this->validFrom == hc.validFrom;
+}
+
+bool HumanSocial::operator != (const HumanSocial &hc) const
+{
+    return this->_id != hc._id || this->validFrom != hc.validFrom;
+}
+
+const std::time_t &HumanSocial::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
+}
+

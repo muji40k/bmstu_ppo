@@ -40,3 +40,13 @@ bool User::operator < (const User &user)
     return this->_id < user._id;
 }
 
+bool User::operator == (const User &user) const
+{
+    return this->_id == user._id;
+}
+
+bool User::operator != (const User &user) const
+{
+    return this->_id != user._id;
+}
+

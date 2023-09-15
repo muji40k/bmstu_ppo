@@ -18,11 +18,16 @@ class Language : public TimeChangeable
 
         Language &operator = (const Language &language);
 
+        bool operator == (const Language &language) const;
+        bool operator != (const Language &language) const;
+
         bool operator < (const Language &language) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, Name, _name);
         DEFAULT_SG(std::string, Family, _family);
+
+        const std::time_t &getTime(void) const;
 
         Property<Language, unsigned long long> id;
         Property<Language, std::string> name;

@@ -35,8 +35,23 @@ Language &Language::operator = (const Language &language)
     return *this;
 }
 
+bool Language::operator == (const Language &language) const
+{
+    return this->_id == language._id && this->validFrom == language.validFrom;
+}
+
+bool Language::operator != (const Language &language) const
+{
+    return this->_id != language._id || this->validFrom != language.validFrom;
+}
+
 bool Language::operator < (const Language &language) const
 {
     return this->_id < language._id;
+}
+
+const std::time_t &Language::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
 }
 

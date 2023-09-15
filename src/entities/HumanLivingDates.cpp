@@ -54,6 +54,16 @@ HumanLivingDates &HumanLivingDates::operator = (const HumanLivingDates &hld)
     return *this;
 }
 
+bool HumanLivingDates::operator == (const HumanLivingDates &hld) const
+{
+    return this->_id == hld._id && this->validFrom == hld.validFrom;
+}
+
+bool HumanLivingDates::operator != (const HumanLivingDates &hld) const
+{
+    return this->_id != hld._id || this->validFrom != hld.validFrom;
+}
+
 void HumanLivingDates::setBirthDate(const std::time_t &time)
 {
     if (!DateCommon::valid(time))
@@ -74,6 +84,11 @@ void HumanLivingDates::setDeathDate(const std::time_t &time)
         throw CALL_EX(DeathBeforeBirthException);
 
     this->_death_date = time;
+}
+
+const std::time_t &HumanLivingDates::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
 }
 
 bool HumanLivingDates::isAlive(const std::time_t &date) const

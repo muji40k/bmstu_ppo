@@ -6,9 +6,9 @@
 
 #include "ValueCriteria.h"
 
-LoginManager::LoginManager(RepositoryContext &context,
-                           LoginManager::HashFunc func)
-    : context(context), hash(func)
+LoginManager::LoginManager(RepositoryContext &context, HashFunc func,
+                           std::shared_ptr<RegistrationHook> hook)
+    : context(context), hash(func), hook(hook)
 {
     if (nullptr == func)
         throw CALL_EX(HashFuncNotSetException);
@@ -52,6 +52,9 @@ void LoginManager::registerUser(User user)
         throw CALL_EX(AlreadyRegisteredException);
 
     user_repo->create(user);
+
+    if (nullptr != this->hook)
+        this->hook->perform(this->context, user);
 }
 
 std::string LoginManager::update(std::string hash)

@@ -41,6 +41,16 @@ HumanLanguage &HumanLanguage::operator = (const HumanLanguage &hl)
     return *this;
 }
 
+bool HumanLanguage::operator == (const HumanLanguage &hl) const
+{
+    return this->_id == hl._id && this->validFrom == hl.validFrom;
+}
+
+bool HumanLanguage::operator != (const HumanLanguage &hl) const
+{
+    return this->_id != hl._id || this->validFrom != hl.validFrom;
+}
+
 void HumanLanguage::setTime(const std::time_t &time)
 {
     for (auto item : this->_map)
@@ -48,6 +58,11 @@ void HumanLanguage::setTime(const std::time_t &time)
             throw CALL_EX(ChronologicalException);
 
     this->TimeChangeable::setTime(time);
+}
+
+const std::time_t &HumanLanguage::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
 }
 
 void HumanLanguage::add(const Language &item)

@@ -17,7 +17,7 @@ class UserRequestManager
         virtual ~UserRequestManager(void) = default;
 
         virtual std::list<UserMapper::Map> findHuman(std::string hash, const UserMapper::Map &data) const;
-        virtual void setHuman(std::string hash, const UserMapper::Map &date) const;
+        virtual void setHuman(std::string hash, const UserMapper::Map &data) const;
 
     private:
         AppContext &context;

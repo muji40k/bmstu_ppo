@@ -41,6 +41,16 @@ PlaceResource &PlaceResource::operator = (const PlaceResource &pr)
     return *this;
 }
 
+bool PlaceResource::operator == (const PlaceResource &pr) const
+{
+    return this->_id == pr._id && this->validFrom == pr.validFrom;
+}
+
+bool PlaceResource::operator != (const PlaceResource &pr) const
+{
+    return this->_id != pr._id || this->validFrom != pr.validFrom;
+}
+
 void PlaceResource::setTime(const std::time_t &time)
 {
     for (auto item : this->_map)
@@ -48,6 +58,11 @@ void PlaceResource::setTime(const std::time_t &time)
             throw CALL_EX(ChronologicalException);
 
     this->TimeChangeable::setTime(time);
+}
+
+const std::time_t &PlaceResource::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
 }
 
 void PlaceResource::add(const Resource &item)

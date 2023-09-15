@@ -39,3 +39,18 @@ Country &Country::operator = (const Country &country)
     return *this;
 }
 
+bool Country::operator == (const Country &country) const
+{
+    return this->_id == country._id && this->validFrom == country.validFrom;
+}
+
+bool Country::operator != (const Country &country) const
+{
+    return this->_id != country._id || this->validFrom != country.validFrom;
+}
+
+const std::time_t &Country::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
+}
+

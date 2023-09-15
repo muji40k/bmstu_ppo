@@ -14,6 +14,8 @@ class UserRole
         UserRole(const UserRole &ur);
 
         UserRole &operator = (const UserRole &ur);
+        bool operator == (const UserRole &ur) const;
+        bool operator != (const UserRole &ur) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(unsigned long long, UserId, _user_id);

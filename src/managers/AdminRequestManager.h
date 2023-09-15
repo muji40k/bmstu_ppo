@@ -15,7 +15,7 @@ class RequestSetIterator
         RequestSetIterator(std::shared_ptr<IRepositoryIterator<MergeRequest>> iter);
 
         MergeRequest operator * (void) const;
-        RequestSetIterator &operator ++ (int);
+        RequestSetIterator &operator ++ (void);
         bool operator != (const RequestSetIterator &iter);
 
     private:
@@ -25,13 +25,15 @@ class RequestSetIterator
 class RequestSet
 {
     public:
+        RequestSet(void) = default;
         RequestSet(std::shared_ptr<IRepositorySet<MergeRequest>> set);
 
         RequestSetIterator begin(void);
         RequestSetIterator end(void);
 
     private:
-        std::shared_ptr<IRepositorySet<MergeRequest>> requests;
+        bool valid = false;
+        std::shared_ptr<IRepositorySet<MergeRequest>> requests = nullptr;
         std::shared_ptr<IRepositoryIterator<MergeRequest>> b = nullptr;
         std::shared_ptr<IRepositoryIterator<MergeRequest>> e = nullptr;
 };
@@ -59,6 +61,8 @@ DEF_EX(CommonRequestSetException, ManagerException,
        "Common RequestSet exception");
 DEF_EX(NullptrRequestSetException, CommonRequestSetException,
        "RequestSet Nullptr exception");
+DEF_EX(InvalidRequestSetExcpetion, CommonRequestSetException,
+       "RequestSet is invalid");
 
 DEF_EX(CommonAdminRequestManagerException, ManagerException,
        "Common UserRequestManager exception");
@@ -66,8 +70,8 @@ DEF_EX(NotAuthenticatedAdminRequestManagerException, CommonAdminRequestManagerEx
        "Hash doesn't specify any user");
 DEF_EX(NotAuthorizedAdminRequestManagerException, CommonAdminRequestManagerException,
        "User isn't an admin");
-DEF_EX(NotExistAdminRequestManagerException, CommonAdminRequestManagerException,
-       "Specified request doesn't exist");
+DEF_EX(NoHandlerAdminRequestManagerException, CommonAdminRequestManagerException,
+       "State isn't supported");
 
 #endif
 

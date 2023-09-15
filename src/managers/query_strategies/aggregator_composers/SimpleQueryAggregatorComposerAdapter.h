@@ -15,7 +15,7 @@ class SimpleQueryAggregatorComposerAdapter : public AggregatorComposer::Aggregat
 
     public:
         SimpleQueryAggregatorComposerAdapter(Getter getter,
-                                             const IQueryAggregator<Class> &aggregator);
+                                             IQueryAggregator<Class> &aggregator);
         virtual ~SimpleQueryAggregatorComposerAdapter(void) override = default;
         virtual const std::string &type(void) const override;
         virtual void run(AppContext &context,
@@ -24,7 +24,7 @@ class SimpleQueryAggregatorComposerAdapter : public AggregatorComposer::Aggregat
 
     private:
         Getter getter;
-        const IQueryAggregator<Class> &aggregator;
+        IQueryAggregator<Class> &aggregator;
 };
 
 DEF_EX(CommonSimpleQueryAggregatorComposerAdapterException, CommonAggregatorComposerException,

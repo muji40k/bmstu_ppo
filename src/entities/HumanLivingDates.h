@@ -20,6 +20,9 @@ class HumanLivingDates : public TimeChangeable
 
         HumanLivingDates &operator = (const HumanLivingDates &hld);
 
+        bool operator == (const HumanLivingDates &hld) const;
+        bool operator != (const HumanLivingDates &hld) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
 
         void setBirthDate(const std::time_t &time);
@@ -27,6 +30,8 @@ class HumanLivingDates : public TimeChangeable
 
         void setDeathDate(const std::time_t &time);
         DEFAULT_GETTER(std::time_t, DeathDate, _death_date);
+
+        const std::time_t &getTime(void) const;
 
         Property<HumanLivingDates, unsigned long long> id;
         Property<HumanLivingDates, std::time_t> birthDate;

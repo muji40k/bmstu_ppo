@@ -48,3 +48,18 @@ bool Resource::operator < (const Resource &resource) const
     return this->_id < resource._id;
 }
 
+bool Resource::operator == (const Resource &resource) const
+{
+    return this->_id == resource._id && this->validFrom == resource.validFrom;
+}
+
+bool Resource::operator != (const Resource &resource) const
+{
+    return this->_id != resource._id || this->validFrom != resource.validFrom;
+}
+
+const std::time_t &Resource::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
+}
+

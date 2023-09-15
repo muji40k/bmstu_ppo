@@ -32,7 +32,7 @@ bool AuthorizationManager::innerAuthorize(const User &user,
 
     std::shared_ptr<IUserRoleRepository> repo = this->context.getUserRoleRepository();
 
-    LogicCriteriaBuilder builder (std::make_shared<ValueCriteria>(TypeName::getAttribute<UserRole>("user_id"), "=", std::to_string(user.id)));
+    LogicCriteriaBuilder builder (std::make_shared<ValueCriteria>(TypeName::getAttribute<UserRole>("userId"), "=", std::to_string(user.id)));
     auto iter = container.begin();
     builder.addAND(std::make_shared<ValueCriteria>(TypeName::getAttribute<UserRole>("role"), "=", *iter));
 

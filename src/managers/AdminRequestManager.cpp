@@ -22,7 +22,7 @@ MergeRequest RequestSetIterator::operator * (void) const
     return this->iter->get();
 }
 
-RequestSetIterator &RequestSetIterator::operator ++ (int)
+RequestSetIterator &RequestSetIterator::operator ++ (void)
 {
     this->iter->next();
 
@@ -35,7 +35,7 @@ bool RequestSetIterator::operator != (const RequestSetIterator &iter)
 }
 
 RequestSet::RequestSet(std::shared_ptr<IRepositorySet<MergeRequest>> set)
-    : requests(set)
+    : valid(true), requests(set)
 {
     if (nullptr == set)
         throw CALL_EX(NullptrRequestSetException);
@@ -43,6 +43,9 @@ RequestSet::RequestSet(std::shared_ptr<IRepositorySet<MergeRequest>> set)
 
 RequestSetIterator RequestSet::begin(void)
 {
+    if (!this->valid)
+        throw CALL_EX(InvalidRequestSetExcpetion);
+
     if (nullptr == this->b)
         this->b = this->requests->begin();
 
@@ -51,6 +54,9 @@ RequestSetIterator RequestSet::begin(void)
 
 RequestSetIterator RequestSet::end(void)
 {
+    if (!this->valid)
+        throw CALL_EX(InvalidRequestSetExcpetion);
+
     if (nullptr == this->e)
         this->e = this->requests->end();
 
@@ -93,7 +99,14 @@ void AdminRequestManager::updateRequest(std::string hash, const MergeRequest &re
     if (!authorizator->authorize(user, {"admin"}))
         throw CALL_EX(NotAuthorizedAdminRequestManagerException);
 
-    this->handler.handle(this->context, request);
+    try
+    {
+        this->handler.handle(this->context, request);
+    }
+    catch (NoHandlerRequestHandlerSetException &)
+    {
+        throw CALL_EX(NoHandlerAdminRequestManagerException);
+    }
 
     auto repo = this->context.getRepositoryContext().getMergeRequestRepository();
     repo->update(request);

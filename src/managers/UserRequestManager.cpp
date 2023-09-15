@@ -33,17 +33,17 @@ static std::shared_ptr<ValueCriteria> parse_argument(UserMapper::Map::const_iter
 
 std::list<UserMapper::Map> UserRequestManager::findHuman(std::string hash, const UserMapper::Map &data) const
 {
-    auto login = this->context.getLoginManager();
-
-    if (!login->isAuthenticated(hash))
-        throw CALL_EX(CommonUserRequestManagerException);
-
     if (data.empty())
         throw CALL_EX(EmptyDataUserRequestManagerException);
 
+    auto login = this->context.getLoginManager();
+
+    if (!login->isAuthenticated(hash))
+        throw CALL_EX(NotAuthenticatedUserRequestManagerException);
+
     auto iter = data.begin();
 
-    LogicCriteriaBuilder builder (parse_argument(iter));
+    LogicCriteriaBuilder builder (parse_argument(iter++));
 
     for (; data.end() != iter; ++iter)
         builder.addAND(parse_argument(iter));
@@ -68,17 +68,20 @@ std::list<UserMapper::Map> UserRequestManager::findHuman(std::string hash, const
     return out;
 }
 
-void UserRequestManager::setHuman(std::string hash, const UserMapper::Map &date) const
+void UserRequestManager::setHuman(std::string hash, const UserMapper::Map &data) const
 {
-    auto iter = date.find("id");
+    if (data.empty())
+        throw CALL_EX(EmptyDataUserRequestManagerException);
 
-    if (date.end() == iter)
+    auto iter = data.find("id");
+
+    if (data.end() == iter)
         throw CALL_EX(UnsuitableDataUserRequestManagerException);
 
     auto login = this->context.getLoginManager();
 
     if (!login->isAuthenticated(hash))
-        throw CALL_EX(CommonUserRequestManagerException);
+        throw CALL_EX(NotAuthenticatedUserRequestManagerException);
 
     const User user = login->getAuthenticated(hash);
 

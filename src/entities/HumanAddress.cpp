@@ -31,12 +31,27 @@ HumanAddress &HumanAddress::operator = (const HumanAddress &ha)
     return *this;
 }
 
+bool HumanAddress::operator == (const HumanAddress &ha) const
+{
+    return this->_id == ha._id && this->validFrom == ha.validFrom;
+}
+
+bool HumanAddress::operator != (const HumanAddress &ha) const
+{
+    return this->_id != ha._id || this->validFrom != ha.validFrom;
+}
+
 void HumanAddress::setTime(const std::time_t &time)
 {
     if (time < this->_address.validFrom)
         throw CALL_EX(ChronologicalException);
 
     this->TimeChangeable::setTime(time);
+}
+
+const std::time_t &HumanAddress::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
 }
 
 void HumanAddress::setCurrentPlace(const Place &place)

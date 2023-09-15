@@ -18,6 +18,9 @@ class MergeRequest
 
         MergeRequest &operator = (const MergeRequest &rq);
 
+        bool operator == (const MergeRequest &rq) const;
+        bool operator != (const MergeRequest &rq) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(User, User, _user);
         DEFAULT_SG(Human, Human, _human);

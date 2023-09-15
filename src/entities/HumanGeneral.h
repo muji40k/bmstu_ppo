@@ -18,11 +18,15 @@ class HumanGeneral : public TimeChangeable
         virtual ~HumanGeneral(void) = default;
 
         HumanGeneral &operator = (const HumanGeneral &hg);
+        bool operator == (const HumanGeneral &hg) const;
+        bool operator != (const HumanGeneral &hg) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, BloodType, _blood_type);
         DEFAULT_SG(std::string, Gender, _gender);
         DEFAULT_SG(std::string, Race, _race);
+
+        const std::time_t &getTime(void) const;
 
         Property<HumanGeneral, unsigned long long> id;
         Property<HumanGeneral, std::string> bloodType;

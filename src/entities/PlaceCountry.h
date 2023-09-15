@@ -18,7 +18,11 @@ class PlaceCountry : public TimeChangeable
 
         PlaceCountry &operator = (const PlaceCountry &pc);
 
+        bool operator == (const PlaceCountry &pc) const;
+        bool operator != (const PlaceCountry &pc) const;
+
         virtual void setTime(const std::time_t &time) override;
+        const std::time_t &getTime(void) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         void setCountry(const Country &country);

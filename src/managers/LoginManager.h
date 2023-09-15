@@ -1,19 +1,23 @@
 #ifndef _LOGINMANAGER_H_
 #define _LOGINMANAGER_H_
 
+#include <memory>
 #include <unordered_map>
 #include <string>
+#include <list>
 
 #include "manager_exceptions.h"
 
 #include "RepositoryContext.h"
 #include "User.h"
+#include "RegistrationHook.h"
 
 class LoginManager
 {
     public:
         using HashFunc = std::string (*)(const User &user);
-        LoginManager(RepositoryContext &context, HashFunc func);
+        LoginManager(RepositoryContext &context, HashFunc func,
+                     std::shared_ptr<RegistrationHook> hook = nullptr);
         virtual ~LoginManager(void) = default;
 
         virtual std::string login(std::string email, std::string password);
@@ -25,8 +29,9 @@ class LoginManager
 
     private:
         RepositoryContext &context;
-        std::unordered_map<std::string, User> authenticated;
         HashFunc hash;
+        std::shared_ptr<RegistrationHook> hook = nullptr;
+        std::unordered_map<std::string, User> authenticated;
 };
 
 DEF_EX(CommonLoginManagerException, ManagerException,

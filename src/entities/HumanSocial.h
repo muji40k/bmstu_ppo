@@ -19,11 +19,16 @@ class HumanSocial : public TimeChangeable
 
         HumanSocial &operator = (const HumanSocial &hc);
 
+        bool operator == (const HumanSocial &hc) const;
+        bool operator != (const HumanSocial &hc) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, Religion, _religion);
         DEFAULT_SG(std::string, Wealth, _wealth);
         DEFAULT_SG(std::string, Literacy, _literacy);
         DEFAULT_SG(std::string, Busyness, _busyness);
+
+        const std::time_t &getTime(void) const;
 
         Property<HumanSocial, unsigned long long> id;
         Property<HumanSocial, std::string> religion;

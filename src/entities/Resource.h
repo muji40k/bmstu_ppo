@@ -18,12 +18,16 @@ class Resource : public TimeChangeable
 
         Resource &operator = (const Resource &resource);
         bool operator < (const Resource &resource) const;
+        bool operator == (const Resource &resource) const;
+        bool operator != (const Resource &resource) const;
 
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, Type, _type);
         DEFAULT_SG(std::string, Name, _name);
         DEFAULT_SG(double, Value, _value);
         DEFAULT_SG(std::string, Rarity, _rarity);
+
+        const std::time_t &getTime(void) const;
 
         Property<Resource, unsigned long long> id;
         Property<Resource, std::string> type;

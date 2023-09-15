@@ -14,7 +14,7 @@ class IRepositoryIterator
         virtual ~IRepositoryIterator(void) = default;
         virtual T get(void) = 0;
         virtual void next() = 0;
-        virtual bool notEqual(std::shared_ptr<IRepositoryIterator> iter) = 0;
+        virtual bool notEqual(std::shared_ptr<IRepositoryIterator<T>> iter) = 0;
 };
 
 template <typename T>
@@ -39,6 +39,22 @@ DEF_EX(CommonReadRepositoryException, RepositoryException,
        "Common Repository exception");
 DEF_EX(WrongCriteriaReadRepositoryException, CommonReadRepositoryException,
        "Incorrect criteria passed");
+DEF_EX(AllocationReadRepositoryException, CommonReadRepositoryException,
+       "Unable to allocate");
+
+DEF_EX(CommonRepositoryIteratorException, CommonReadRepositoryException,
+       "Common RepositoryIterator exception");
+DEF_EX(NullptrRepositoryIteratorException, CommonRepositoryIteratorException,
+       "Nullptr occured");
+DEF_EX(IncompatibleRepositoryIteratorException, CommonRepositoryIteratorException,
+       "Unable to allocate");
+
+DEF_EX(CommonRepositorySetException, CommonReadRepositoryException,
+       "Common RepositorySet exception");
+DEF_EX(NullptrRepositorySetException, CommonRepositorySetException,
+       "Nullptr occured");
+DEF_EX(AllocationRepositorySetException, CommonRepositorySetException,
+       "Unable to allocate");
 
 #endif
 

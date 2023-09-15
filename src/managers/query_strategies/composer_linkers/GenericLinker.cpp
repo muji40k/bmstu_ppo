@@ -27,7 +27,7 @@ try
 
     LogicCriteriaBuilder &builder = this->builders.back();
 
-    for (; ids.end() != iter; ++iter)
+    while (ids.end() != ++iter)
         builder.addOR(this->func(*iter));
 
     bank.set(this->name, builder.get());

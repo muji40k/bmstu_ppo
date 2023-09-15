@@ -20,7 +20,7 @@ static std::shared_ptr<ICriteria> getIdItem(const unsigned long long id)
 template <typename Class, typename RepoType>
 SimpleQueryAggregatorComposerAdapter<Class, RepoType>::\
     SimpleQueryAggregatorComposerAdapter(Getter getter,
-                                         const IQueryAggregator<Class> &aggregator)
+                                         IQueryAggregator<Class> &aggregator)
     : getter(getter), aggregator(aggregator)
 {
     if (nullptr == getter)

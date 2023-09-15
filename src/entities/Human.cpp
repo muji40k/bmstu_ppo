@@ -49,6 +49,21 @@ Human &Human::operator = (const Human &human)
     return *this;
 }
 
+bool Human::operator == (const Human &human) const
+{
+    return this->_id == human._id && this->validFrom == human.validFrom;
+}
+
+bool Human::operator != (const Human &human) const
+{
+    return this->_id != human._id || this->validFrom != human.validFrom;
+}
+
+const std::time_t &Human::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
+}
+
 void Human::setTime(const std::time_t &time)
 {
     if (time < this->_birth_place.validFrom)

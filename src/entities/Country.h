@@ -18,10 +18,15 @@ class Country : public TimeChangeable
 
         Country &operator = (const Country &country);
 
+        bool operator == (const Country &country) const;
+        bool operator != (const Country &country) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
         DEFAULT_SG(std::string, Type, _type);
         DEFAULT_SG(std::string, Name, _name);
         DEFAULT_SG(double, GDP, _gdp);
+
+        const std::time_t &getTime(void) const;
 
         Property<Country, unsigned long long> id;
         Property<Country, std::string> type;

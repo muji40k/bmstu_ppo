@@ -43,3 +43,18 @@ Place &Place::operator = (const Place &place)
     return *this;
 }
 
+bool Place::operator == (const Place &place) const
+{
+    return this->_id == place._id && this->validFrom == place.validFrom;
+}
+
+bool Place::operator != (const Place &place) const
+{
+    return this->_id != place._id || this->validFrom != place.validFrom;
+}
+
+const std::time_t &Place::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
+}
+

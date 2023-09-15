@@ -27,9 +27,20 @@ std::list<unsigned long long> QueryComposer::run(AppContext &context, const Crit
     std::list<unsigned long long> out;
     auto iter = this->items.begin();
 
-    do
+    std::shared_ptr<const QueryItem> item = (*iter).second;
+
+    try
     {
-        std::shared_ptr<const QueryItem> item = (*iter).second;
+        std::shared_ptr<const ICriteria> criteria = bank.get(item->type());
+        out = item->run(context, criteria);
+        out.sort();
+    }
+    catch (NotSetCriteriaBankException &)
+    {}
+
+    while(out.size() && this->items.end() != ++iter)
+    {
+        item = (*iter).second;
         std::list<unsigned long long> tmp, next;
 
         try
@@ -45,7 +56,6 @@ std::list<unsigned long long> QueryComposer::run(AppContext &context, const Crit
                               std::back_inserter(next));
         out = next;
     }
-    while(out.size() && this->items.end() != ++iter);
 
     return out;
 }

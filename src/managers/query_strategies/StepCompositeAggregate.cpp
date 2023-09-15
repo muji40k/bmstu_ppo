@@ -31,7 +31,7 @@ void StepCompositeAggregate::execute(AppContext &context)
     auto liter = this->linkers.begin();
     std::list<unsigned long long> ids = (*citer)->run(context, copy);
 
-    for (; this->composers.end() != citer; ++citer, ++liter)
+    for (; this->composers.end() != ++citer; ++liter)
     {
         (*liter)->link(copy, ids);
         ids = (*citer)->run(context, copy);

@@ -35,3 +35,13 @@ MergeRequest &MergeRequest::operator = (const MergeRequest &rq)
     return *this;
 }
 
+bool MergeRequest::operator == (const MergeRequest &rq) const
+{
+    return this->_id == rq._id;
+}
+
+bool MergeRequest::operator != (const MergeRequest &rq) const
+{
+    return this->_id != rq._id;
+}
+

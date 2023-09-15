@@ -23,7 +23,10 @@ class Human : public TimeChangeable
         virtual ~Human(void) = default;
 
         Human &operator = (const Human &human);
+        bool operator == (const Human &human) const;
+        bool operator != (const Human &human) const;
 
+        const std::time_t &getTime(void) const;
         virtual void setTime(const std::time_t &time) override;
 
         DEFAULT_SG(unsigned long long, Id, _id);

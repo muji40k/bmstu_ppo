@@ -31,3 +31,13 @@ UserRole &UserRole::operator = (const UserRole &ur)
     return *this;
 }
 
+bool UserRole::operator == (const UserRole &ur) const
+{
+    return this->_id == ur._id;
+}
+
+bool UserRole::operator != (const UserRole &ur) const
+{
+    return this->_id != ur._id;
+}
+

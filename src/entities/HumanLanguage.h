@@ -25,11 +25,15 @@ class HumanLanguage : public TimeChangeable, public IQueryable<Language>
 
         HumanLanguage &operator = (const HumanLanguage &hc);
 
+        bool operator == (const HumanLanguage &hl) const;
+        bool operator != (const HumanLanguage &hl) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
 
         Property<HumanLanguage, unsigned long long> id;
 
         virtual void setTime(const std::time_t &time) override;
+        const std::time_t &getTime(void) const;
 
         virtual void add(const Language &item) override;
         virtual void update(const Language &item) override;

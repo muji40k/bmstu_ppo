@@ -3,6 +3,8 @@
 
 #include "ICriteria.h"
 
+#include "repository_exceptions.h"
+
 class UnaryFieldCriteria;
 class UnaryCompositeCriteria;
 class ValueCriteria;
@@ -20,6 +22,9 @@ class ICriteriaVisitor
         virtual void visit(const FieldCriteria &criteria) = 0;
         virtual void visit(const CompositeCriteria &criteria) = 0;
 };
+
+DEF_EX(CommonCriteriaVisitorException, RepositoryException,
+       "Common CriteriaVisitor exception");
 
 #endif
 

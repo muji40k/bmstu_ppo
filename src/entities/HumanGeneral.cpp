@@ -40,3 +40,18 @@ HumanGeneral &HumanGeneral::operator = (const HumanGeneral &hg)
     return *this;
 }
 
+bool HumanGeneral::operator == (const HumanGeneral &hg) const
+{
+    return this->_id == hg._id && this->validFrom == hg.validFrom;
+}
+
+bool HumanGeneral::operator != (const HumanGeneral &hg) const
+{
+    return this->_id != hg._id || this->validFrom != hg.validFrom;
+}
+
+const std::time_t &HumanGeneral::getTime(void) const
+{
+    return this->TimeChangeable::getTime();
+}
+

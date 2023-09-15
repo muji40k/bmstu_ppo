@@ -24,11 +24,15 @@ class PlaceResource : public TimeChangeable, public IQueryable<Resource>
 
         PlaceResource &operator = (const PlaceResource &pr);
 
+        bool operator == (const PlaceResource &pr) const;
+        bool operator != (const PlaceResource &pr) const;
+
         DEFAULT_SG(unsigned long long, Id, _id);
 
         Property<PlaceResource, unsigned long long> id;
 
         virtual void setTime(const std::time_t &time) override;
+        const std::time_t &getTime(void) const;
 
         virtual void add(const Resource &item) override;
         virtual void update(const Resource &item) override;
