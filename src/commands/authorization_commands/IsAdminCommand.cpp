@@ -16,9 +16,8 @@ try
     if (!login->isAuthenticated(this->hash))
         throw CALL_EX(NotAuthenticatedIsAdminCommandException);
 
-    static const std::list<std::string> roles;
-    this->res = authorizer->authorize(login->getAuthenticated(this->hash),
-                                      roles);
+    static const std::list<std::string> roles = {"admin"};
+    this->res = authorizer->authorize(this->hash, roles);
 }
 catch (AllocationAppContextException &er)
 {

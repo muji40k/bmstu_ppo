@@ -54,7 +54,11 @@ void LoginManager::registerUser(User user)
     user_repo->create(user);
 
     if (nullptr != this->hook)
+    {
+        set = user_repo->get(email_criteria);
+        user = set->begin()->get();
         this->hook->perform(this->context, user);
+    }
 }
 
 std::string LoginManager::update(std::string hash)

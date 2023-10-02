@@ -28,6 +28,8 @@ DEF_EX(CommonUserRequestManagerException, ManagerException,
        "Common UserRequestManager exception");
 DEF_EX(NotAuthenticatedUserRequestManagerException, CommonUserRequestManagerException,
        "User not authenticated");
+DEF_EX(NotAuthorizedUserRequestManagerException, CommonUserRequestManagerException,
+       "User not authorized");
 DEF_EX(EmptyDataUserRequestManagerException, CommonUserRequestManagerException,
        "Data specifier can't be empty");
 DEF_EX(UnspecifiedDataUserRequestManagerException, CommonUserRequestManagerException,

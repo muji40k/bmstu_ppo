@@ -30,6 +30,8 @@ struct AdminRequestManagerTest : public testing::Test {
         admin_hash = login->login(admin.email, admin.password);
 
         context->getRepositoryContext().getUserRoleRepository()->create(UserRole(1, admin.id, "admin"));
+        context->getRepositoryContext().getUserRoleRepository()->create(UserRole(2, admin.id, "plainuser"));
+        context->getRepositoryContext().getUserRoleRepository()->create(UserRole(3, user.id, "plainuser"));
 
         context->getRepositoryContext().getHumanRepository()->create(mergable);
     }

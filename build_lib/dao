@@ -1,0 +1,7 @@
+src/repositories
+src/repositories/criterias
+src/repositories/criterias/builders
+src/repositories/criterias/criteria_bank
+src/repositories/criterias/misc
+src/repositories/criterias/visitors
+src/repositories/criterias/visitors/builders

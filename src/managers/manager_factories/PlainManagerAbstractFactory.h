@@ -8,6 +8,7 @@
 #include "RequestHandlerSet.h"
 #include "LoginManager.h"
 #include "RegistrationHook.h"
+#include "AuthorizationHook.h"
 
 class PlainManagerAbstractFactory : public ManagerAbstractFactory
 {
@@ -16,7 +17,8 @@ class PlainManagerAbstractFactory : public ManagerAbstractFactory
                                     LoginManager::HashFunc hash,
                                     std::shared_ptr<UserMapper> user_mapper,
                                     std::shared_ptr<RequestHandlerSet> handler_set,
-                                    std::shared_ptr<RegistrationHook> registration_hook = nullptr);
+                                    std::shared_ptr<RegistrationHook> registration_hook = nullptr,
+                                    std::shared_ptr<AuthorizationHook> authorization_hook = nullptr);
         virtual ~PlainManagerAbstractFactory(void) override = default;
 
     private:
@@ -25,6 +27,7 @@ class PlainManagerAbstractFactory : public ManagerAbstractFactory
         std::shared_ptr<UserMapper> user_mapper;
         std::shared_ptr<RequestHandlerSet> handler_set;
         std::shared_ptr<RegistrationHook> registration_hook;
+        std::shared_ptr<AuthorizationHook> authorization_hook;
 
 #define ADD_REPO(type) \
         virtual std::shared_ptr<type> make##type(void) override

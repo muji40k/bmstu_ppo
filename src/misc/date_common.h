@@ -2,6 +2,7 @@
 #define _DATE_COMMON_H_
 
 #include <ctime>
+#include <string>
 
 namespace DateCommon
 {
@@ -9,6 +10,8 @@ namespace DateCommon
 
     bool valid(const std::time_t &time);
     int yearDiff(std::time_t start, std::time_t end);
+    std::string getTime(const std::time_t &time);
+    std::time_t parseTime(std::string time, const char *const format = "%Y-%m-%d %H:%M:%S");
 }
 
 #endif

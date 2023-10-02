@@ -8,12 +8,12 @@ DIR_LIB_SPECS := build_lib
 DIR_LIB       := lib
 
 APP_MAIN     := src/main.cpp
-APP_LIBS     := domain
-APP_LIBS_EXT := pthread crypto $(shell pkg-config --libs Qt5Widgets | sed 's/\-l//g')
+APP_LIBS     := domain dao psqldao
+APP_LIBS_EXT := pthread crypto $(shell pkg-config --libs Qt5Widgets | sed 's/\-l//g') pqxx pq
 
 TEST_MAIN     := src/tests/main.cpp
-TEST_LIBS     := domain test
-TEST_LIBS_EXT := crypto gtest
+TEST_LIBS     := domain dao psqldao unittest integrationtest
+TEST_LIBS_EXT := crypto gtest pqxx pq
 
 APP_LIBS_OUT := $(foreach lib, $(APP_LIBS), $(DIR_LIB)/lib$(lib).so)
 APP_MAIN_OUT := $(APP_MAIN:$(DIR_SRC)/%.cpp=$(DIR_OUT)/%.o)

@@ -9,6 +9,7 @@
 #include "LogicCriteriaBuilder.h"
 
 #include "LoginManager.h"
+#include "AuthorizationManager.h"
 
 #include "MergeRequest.h"
 
@@ -40,6 +41,11 @@ std::list<UserMapper::Map> UserRequestManager::findHuman(std::string hash, const
 
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedUserRequestManagerException);
+
+    auto authorizator = this->context.getAuthorizationManager();
+
+    if (!authorizator->authorize(hash, {"plainuser"}))
+        throw CALL_EX(NotAuthorizedUserRequestManagerException);
 
     auto iter = data.begin();
 
@@ -82,6 +88,11 @@ void UserRequestManager::setHuman(std::string hash, const UserMapper::Map &data)
 
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedUserRequestManagerException);
+
+    auto authorizator = this->context.getAuthorizationManager();
+
+    if (!authorizator->authorize(hash, {"plainuser"}))
+        throw CALL_EX(NotAuthorizedUserRequestManagerException);
 
     const User user = login->getAuthenticated(hash);
 

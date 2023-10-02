@@ -22,9 +22,4 @@ src/managers/registration_hooks
 src/managers/request_handlers
 src/managers/user_getters
 src/misc
-src/repositories
-src/repositories/criterias
-src/repositories/criterias/builders
-src/repositories/criterias/criteria_bank
-src/repositories/criterias/visitors
 src/user

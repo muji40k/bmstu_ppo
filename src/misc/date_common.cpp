@@ -46,3 +46,23 @@ int DateCommon::yearDiff(std::time_t start, std::time_t end)
     return --diff;
 }
 
+std::string DateCommon::getTime(const std::time_t &time)
+{
+    std::string out = std::asctime(std::localtime(&time));
+
+    return std::string(out.begin(), out.end() - 1);
+}
+
+
+std::time_t DateCommon::parseTime(std::string time, const char *const format)
+{
+    struct tm tm;
+    tm.tm_isdst = -1; // auto determine
+    time_t epoch = 0;
+
+    if (strptime(time.c_str(), format, &tm) != NULL)
+        epoch = mktime(&tm);
+
+    return epoch;
+}
+

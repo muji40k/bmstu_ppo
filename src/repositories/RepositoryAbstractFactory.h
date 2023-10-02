@@ -52,6 +52,9 @@ class RepositoryAbstractFactory
 
 DEF_EX(CommonRepositoryAbstractFactoryException, RepositoryException,
        "Common RepositoryAbstractFactory exception");
+DEF_EX(InitializtionRepositoryAbstractFactoryException,
+       CommonRepositoryAbstractFactoryException,
+       "Unable to allocate factory");
 DEF_EX(AllocationRepositoryAbstractFactoryException,
        CommonRepositoryAbstractFactoryException,
        "RepositoryAbstractFactory allocation error occured");

@@ -1,8 +1,10 @@
 #ifndef _ICRITERIAVISITORRESULT_H_
 #define _ICRITERIAVISITORRESULT_H_
 
+#include "ICriteriaVisitor.h"
+
 template <typename Type>
-class ICriteriaVisitorResult
+class ICriteriaVisitorResult : public ICriteriaVisitor
 {
     public:
         virtual ~ICriteriaVisitorResult(void) = default;

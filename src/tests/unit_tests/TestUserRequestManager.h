@@ -28,6 +28,8 @@ struct UserRequestManagerTest : public testing::Test {
         login->registerUser(user);
         hash = login->login(user.email, user.password);
 
+        context->getRepositoryContext().getUserRoleRepository()->create(UserRole(1, user.id, "plainuser"));
+
         auto repo = context->getRepositoryContext().getHumanRepository();
         repo->create(ref_human_a);
         repo->create(ref_human_b);

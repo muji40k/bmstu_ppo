@@ -33,6 +33,8 @@ DEF_EX(CommonUserInfoManagerException, ManagerException,
        "Common UserInfoManager exception");
 DEF_EX(NotAuthenticatedUserInfoManagerException, CommonUserInfoManagerException,
        "User not authenticated");
+DEF_EX(NotAuthorizedUserInfoManagerException, CommonUserInfoManagerException,
+       "User not authorized");
 DEF_EX(UnexpectedKeyUserInfoManagerException, CommonUserInfoManagerException,
        "Unexpected key occured");
 DEF_EX(NotHumanUserInfoManagerException, CommonUserInfoManagerException,

@@ -28,6 +28,9 @@ struct UserInfoManagerTest : public testing::Test {
         login->registerUser(user_human_set);
         hash_human = login->login(user_human_set.email, user_human_set.password);
 
+        context->getRepositoryContext().getUserRoleRepository()->create(UserRole(1, user.id, "plainuser"));
+        context->getRepositoryContext().getUserRoleRepository()->create(UserRole(2, user_human_set.id, "plainuser"));
+
         auto repo = context->getRepositoryContext().getUserHumanRepository();
         repo->update(UserHuman(2, ref_human));
     }

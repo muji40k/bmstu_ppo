@@ -77,7 +77,7 @@ AdminRequestManager::AdminRequestManager(AppContext &context, RequestHandlerSet 
     const User user = login->getAuthenticated(hash);
     auto authorizator = this->context.getAuthorizationManager();
 
-    if (!authorizator->authorize(user, {"admin"}))
+    if (!authorizator->authorize(hash, {"admin"}))
         throw CALL_EX(NotAuthorizedAdminRequestManagerException);
 
     auto repo = this->context.getRepositoryContext().getMergeRequestRepository();
@@ -93,10 +93,9 @@ void AdminRequestManager::updateRequest(std::string hash, const MergeRequest &re
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedAdminRequestManagerException);
 
-    const User user = login->getAuthenticated(hash);
     auto authorizator = this->context.getAuthorizationManager();
 
-    if (!authorizator->authorize(user, {"admin"}))
+    if (!authorizator->authorize(hash, {"admin"}))
         throw CALL_EX(NotAuthorizedAdminRequestManagerException);
 
     try

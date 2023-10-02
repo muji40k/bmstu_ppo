@@ -44,6 +44,8 @@ DEF_EX(AllocationReadRepositoryException, CommonReadRepositoryException,
 
 DEF_EX(CommonRepositoryIteratorException, CommonReadRepositoryException,
        "Common RepositoryIterator exception");
+DEF_EX(InitializationRepositoryIteratorException, CommonRepositoryIteratorException,
+       "Unable to initialize object");
 DEF_EX(NullptrRepositoryIteratorException, CommonRepositoryIteratorException,
        "Nullptr occured");
 DEF_EX(IncompatibleRepositoryIteratorException, CommonRepositoryIteratorException,
@@ -51,6 +53,8 @@ DEF_EX(IncompatibleRepositoryIteratorException, CommonRepositoryIteratorExceptio
 
 DEF_EX(CommonRepositorySetException, CommonReadRepositoryException,
        "Common RepositorySet exception");
+DEF_EX(InitializationRepositorySetException, CommonRepositoryIteratorException,
+       "Unable to initialize object");
 DEF_EX(NullptrRepositorySetException, CommonRepositorySetException,
        "Nullptr occured");
 DEF_EX(AllocationRepositorySetException, CommonRepositorySetException,

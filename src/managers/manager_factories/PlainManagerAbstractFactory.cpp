@@ -12,8 +12,10 @@ PlainManagerAbstractFactory::PlainManagerAbstractFactory(AppContext &context,
                                                          LoginManager::HashFunc hash,
                                                          std::shared_ptr<UserMapper> user_mapper,
                                                          std::shared_ptr<RequestHandlerSet> handler_set,
-                                                         std::shared_ptr<RegistrationHook> registration_hook)
-    : context(context), hash(hash), user_mapper(user_mapper), handler_set(handler_set), registration_hook(registration_hook)
+                                                         std::shared_ptr<RegistrationHook> registration_hook,
+                                                         std::shared_ptr<AuthorizationHook> authorization_hook)
+    : context(context), hash(hash), user_mapper(user_mapper), handler_set(handler_set),
+      registration_hook(registration_hook), authorization_hook(authorization_hook)
 {
     if (nullptr == user_mapper)
         throw CALL_EX(NullptrPlainManagerAbstractFactoryException);
@@ -38,7 +40,7 @@ catch (std::bad_alloc &)
 std::shared_ptr<AuthorizationManager> PlainManagerAbstractFactory::makeAuthorizationManager(void)
 try
 {
-    return std::make_shared<AuthorizationManager>(this->context.getRepositoryContext());
+    return std::make_shared<AuthorizationManager>(this->context, this->authorization_hook);
 }
 catch (std::bad_alloc &)
 {

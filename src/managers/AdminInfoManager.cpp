@@ -14,10 +14,9 @@ void AdminInfoManager::process(std::string hash, AdminInfoStrategy &strategy)
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedAdminInfoManagerException);
 
-    const User user = login->getAuthenticated(hash);
     auto authorizator = this->context.getAuthorizationManager();
 
-    if (!authorizator->authorize(user, {"admin"}))
+    if (!authorizator->authorize(hash, {"admin"}))
         throw CALL_EX(NotAuthorizedAdminInfoManagerException);
 
     strategy.apply(this->context);

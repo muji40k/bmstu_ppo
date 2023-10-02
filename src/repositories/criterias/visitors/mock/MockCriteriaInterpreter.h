@@ -4,14 +4,12 @@
 #include <memory>
 #include <list>
 
-#include "ICriteriaVisitor.h"
 #include "ICriteriaVisitorResult.h"
 
 #include "IQueryable.h"
 
 template <typename Type>
-class MockCriteriaInterpreter : public ICriteriaVisitor,
-                                public ICriteriaVisitorResult<std::shared_ptr<IQueryableFilter<Type>>>
+class MockCriteriaInterpreter : public ICriteriaVisitorResult<std::shared_ptr<IQueryableFilter<Type>>>
 {
     public:
         virtual ~MockCriteriaInterpreter(void) override = default;

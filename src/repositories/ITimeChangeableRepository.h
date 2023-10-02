@@ -54,6 +54,8 @@ DEF_EX(WrongCriteriaTimeChangeableRepositoryException,
 
 DEF_EX(CommonTimeChangeableRepositoryIteratorException, CommonTimeChangeableRepositoryException,
        "Common TimeChangeableRepositoryIterator exception");
+DEF_EX(InitializaionTimeChangeableRepositoryIteratorException, CommonTimeChangeableRepositoryIteratorException,
+       "Unable to initialize object");
 DEF_EX(NullptrTimeChangeableRepositoryIteratorException, CommonTimeChangeableRepositoryIteratorException,
        "Nullptr occured");
 DEF_EX(IncompatibleTimeChangeableRepositoryIteratorException, CommonTimeChangeableRepositoryIteratorException,
@@ -61,6 +63,8 @@ DEF_EX(IncompatibleTimeChangeableRepositoryIteratorException, CommonTimeChangeab
 
 DEF_EX(CommonRepositoryIdIteratorException, CommonTimeChangeableRepositoryException,
        "Common RepositoryIdIterator exception");
+DEF_EX(InitializaionRepositoryIdIteratorException, CommonRepositoryIdIteratorException,
+       "Unable to initialize object");
 DEF_EX(NullptrRepositoryIdIteratorException, CommonRepositoryIdIteratorException,
        "Nullptr occured");
 DEF_EX(IncompatibleRepositoryIdIteratorException, CommonRepositoryIdIteratorException,
@@ -68,6 +72,8 @@ DEF_EX(IncompatibleRepositoryIdIteratorException, CommonRepositoryIdIteratorExce
 
 DEF_EX(CommonTimeChangeableRepositorySetException, CommonTimeChangeableRepositoryException,
        "Common TimeChangeableRepositorySet exception");
+DEF_EX(InitializaionTimeChangeableRepositorySetException, CommonTimeChangeableRepositorySetException,
+       "Unable to initialize object");
 DEF_EX(NullptrTimeChangeableRepositorySetException, CommonTimeChangeableRepositorySetException,
        "Nullptr occured");
 DEF_EX(AllocationTimeChangeableRepositorySetException, CommonTimeChangeableRepositorySetException,

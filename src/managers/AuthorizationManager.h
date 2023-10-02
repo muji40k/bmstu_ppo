@@ -7,28 +7,35 @@
 
 #include "manager_exceptions.h"
 
-#include "RepositoryContext.h"
+#include "AppContext.h"
 #include "User.h"
+#include "AuthorizationHook.h"
 
 class AuthorizationManager
 {
     public:
-        AuthorizationManager(RepositoryContext &context);
+        AuthorizationManager(AppContext &context,
+                             std::shared_ptr<AuthorizationHook> hook = nullptr);
         virtual ~AuthorizationManager(void) = default;
 
-        virtual bool authorize(const User &user,
+        virtual bool authorize(const std::string &hash,
                                std::initializer_list<std::string> roles);
-        virtual bool authorize(const User &user, std::list<std::string> roles);
+        virtual bool authorize(const std::string &hash,
+                               std::list<std::string> roles);
 
     private:
         template <typename Container>
-        bool innerAuthorize(const User &user, const Container &container);
+        bool innerAuthorize(const std::string &hash,
+                            const Container &container);
 
-        RepositoryContext &context;
+        AppContext &context;
+        std::shared_ptr<AuthorizationHook> hook = nullptr;
 };
 
 DEF_EX(CommonAuthorizationManagerException, ManagerException,
        "Common AuthorizationManager exception");
+DEF_EX(NotAuthenticatedAuthorizationManagerException, CommonAuthorizationManagerException,
+       "User isn't authenticated");
 DEF_EX(EmptyListException, CommonAuthorizationManagerException,
        "Role list can't be empty");
 

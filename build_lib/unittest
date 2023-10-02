@@ -2,4 +2,4 @@ src/repositories/criterias/visitors/mock
 src/repositories/criterias/visitors/mock/creators
 src/repositories/mock
 src/repositories/mock/generic
-src/tests
+src/tests/unit_tests/

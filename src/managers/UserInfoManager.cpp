@@ -11,6 +11,7 @@
 #include "UserMapper.h"
 
 #include "LoginManager.h"
+#include "AuthorizationManager.h"
 
 #include "User.h"
 #include "Human.h"
@@ -26,6 +27,11 @@ UserMapper::Map UserInfoManager::getInfo(std::string hash) const
 
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedUserInfoManagerException);
+
+    auto authorizator = this->context.getAuthorizationManager();
+
+    if (!authorizator->authorize(hash, {"plainuser"}))
+        throw CALL_EX(NotAuthorizedUserInfoManagerException);
 
     const User &user = login->getAuthenticated(hash);
 
@@ -43,6 +49,11 @@ void UserInfoManager::updateInfo(std::string hash, const UserMapper::Map &map)
 
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedUserInfoManagerException);
+
+    auto authorizator = this->context.getAuthorizationManager();
+
+    if (!authorizator->authorize(hash, {"plainuser"}))
+        throw CALL_EX(NotAuthorizedUserInfoManagerException);
 
     User user = login->getAuthenticated(hash);
 
@@ -89,6 +100,11 @@ UserHuman UserInfoManager::getUserHuman(std::string hash) const
 
     if (!login->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedUserInfoManagerException);
+
+    auto authorizator = this->context.getAuthorizationManager();
+
+    if (!authorizator->authorize(hash, {"plainuser"}))
+        throw CALL_EX(NotAuthorizedUserInfoManagerException);
 
     const User &user = login->getAuthenticated(hash);
     auto repo = this->context.getRepositoryContext().getUserHumanRepository();

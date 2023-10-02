@@ -36,6 +36,8 @@ Human::Human(const Human &human) : Human()
     this->_lname = human._lname;
     this->_birth_place = human._birth_place;
     this->validFrom = human.validFrom;
+    this->_is_patronymic = human._is_patronymic;
+    this->_patronymic = human._patronymic;
 }
 
 Human &Human::operator = (const Human &human)
@@ -45,6 +47,8 @@ Human &Human::operator = (const Human &human)
     this->_lname = human._lname;
     this->_birth_place = human._birth_place;
     this->validFrom = human.validFrom;
+    this->_is_patronymic = human._is_patronymic;
+    this->_patronymic = human._patronymic;
 
     return *this;
 }
