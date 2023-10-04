@@ -8,7 +8,7 @@ DIR_LIB_SPECS := build_lib
 DIR_LIB       := lib
 
 APP_MAIN     := src/main.cpp
-APP_LIBS     := domain dao psqldao
+APP_LIBS     := domain dao psqldao mvp domainmodel techui
 APP_LIBS_EXT := pthread crypto $(shell pkg-config --libs Qt5Widgets | sed 's/\-l//g') pqxx pq
 
 TEST_MAIN     := src/tests/main.cpp

@@ -29,7 +29,7 @@ RequestSetIterator &RequestSetIterator::operator ++ (void)
     return *this;
 }
 
-bool RequestSetIterator::operator != (const RequestSetIterator &iter)
+bool RequestSetIterator::operator != (const RequestSetIterator &iter) const
 {
     return this->iter->notEqual(iter.iter);
 }
@@ -46,10 +46,7 @@ RequestSetIterator RequestSet::begin(void)
     if (!this->valid)
         throw CALL_EX(InvalidRequestSetExcpetion);
 
-    if (nullptr == this->b)
-        this->b = this->requests->begin();
-
-    return RequestSetIterator(this->b);
+    return RequestSetIterator(this->requests->begin());
 }
 
 RequestSetIterator RequestSet::end(void)

@@ -28,6 +28,8 @@ DEF_EX(AllocationHumanInfoCommandException, CommonHumanInfoCommandException,
        "Unable to allocate HumanInfoManager");
 DEF_EX(NotAuthenticatedHumanInfoCommandException, CommonHumanInfoCommandException,
        "User not authenticated");
+DEF_EX(NotAuthorizedHumanInfoCommandException, CommonHumanInfoCommandException,
+       "User not authorized");
 DEF_EX(RepositoryHumanInfoCommandException, CommonHumanInfoCommandException, "");
 
 #endif

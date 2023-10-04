@@ -24,6 +24,8 @@ DEF_EX(AllocationSetUserInfoCommandException, CommonSetUserInfoCommandException,
        "Unable to allocate SetUserInfoManager");
 DEF_EX(NotAuthenticatedSetUserInfoCommandException, CommonSetUserInfoCommandException,
        "User not authenticated");
+DEF_EX(NotAuthorizedSetUserInfoCommandException, CommonSetUserInfoCommandException,
+       "User not authorized");
 DEF_EX(UnexpectedKeySetUserInfoCommandException, CommonSetUserInfoCommandException,
        "Map contains unexpected keys");
 DEF_EX(RepositorySetUserInfoCommandException, CommonSetUserInfoCommandException, "");

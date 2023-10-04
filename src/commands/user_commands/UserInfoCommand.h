@@ -26,6 +26,8 @@ DEF_EX(AllocationUserInfoCommandException, CommonUserInfoCommandException,
        "Unable to allocate UserInfoManager");
 DEF_EX(NotAuthenticatedUserInfoCommandException, CommonUserInfoCommandException,
        "User not authenticated");
+DEF_EX(NotAuthorizedUserInfoCommandException, CommonUserInfoCommandException,
+       "User not authorized");
 DEF_EX(RepositoryUserInfoCommandException, CommonUserInfoCommandException, "");
 
 #endif

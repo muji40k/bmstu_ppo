@@ -9,13 +9,13 @@
 #include "AdminRequestManager.h"
 
 class GetRequestsCommand : public AdminCommand,
-                           public ICommandResult<std::shared_ptr<RequestSet>>
+                           public ICommandResult<RequestSet>
 {
     public:
         GetRequestsCommand(const std::string hash);
         virtual ~GetRequestsCommand(void) override = default;
         virtual void execute(AppContext &context) override;
-        virtual const std::shared_ptr<RequestSet> &result(void) override;
+        virtual const RequestSet &result(void) override;
 
     private:
         const std::string hash;

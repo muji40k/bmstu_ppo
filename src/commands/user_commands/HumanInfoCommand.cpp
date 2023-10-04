@@ -31,6 +31,10 @@ catch (NotAuthenticatedUserInfoManagerException &)
 {
     throw CALL_EX(NotAuthenticatedHumanInfoCommandException);
 }
+catch (NotAuthorizedUserInfoManagerException &)
+{
+    throw CALL_EX(NotAuthorizedHumanInfoCommandException);
+}
 catch (CommonReadRepositoryException &er)
 {
     throw CALL_EX_MSG(RepositoryHumanInfoCommandException, er.what());

@@ -16,7 +16,7 @@ class RequestSetIterator
 
         MergeRequest operator * (void) const;
         RequestSetIterator &operator ++ (void);
-        bool operator != (const RequestSetIterator &iter);
+        bool operator != (const RequestSetIterator &iter) const;
 
     private:
         std::shared_ptr<IRepositoryIterator<MergeRequest>> iter;
@@ -34,7 +34,6 @@ class RequestSet
     private:
         bool valid = false;
         std::shared_ptr<IRepositorySet<MergeRequest>> requests = nullptr;
-        std::shared_ptr<IRepositoryIterator<MergeRequest>> b = nullptr;
         std::shared_ptr<IRepositoryIterator<MergeRequest>> e = nullptr;
 };
 

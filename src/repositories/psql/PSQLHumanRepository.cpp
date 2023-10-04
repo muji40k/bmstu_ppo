@@ -81,14 +81,25 @@ try
     "human.names (human_id, first_name, last_name, patronymic, valid_from, source) "
     "values      ($1,       $2,         $3,        $4,         $5,         'desktop')";
 
+    static const std::string query_name_npatronymic =
+    "insert into "
+    "human.names (human_id, first_name, last_name, valid_from, source) "
+    "values      ($1,       $2,         $3,        $4,         'desktop')";
+
     static const std::string query_birth_place =
     "insert into "
     "human.birth_place (human_id, place_id, source) "
     "values            ($1,       $2,       'desktop')";
 
-    work.exec_params(query_name, *item.id, *item.firstName, *item.lastName,
-                                 item.isPatronymic() ? *item.patronymic : nullptr,
-                                 DateCommon::getTime(item.validFrom));
+    if (item.isPatronymic())
+        work.exec_params(query_name, *item.id, *item.firstName, *item.lastName,
+                                     *item.patronymic,
+                                     DateCommon::getTime(item.validFrom));
+    else
+        work.exec_params(query_name_npatronymic,
+                         *item.id, *item.firstName, *item.lastName,
+                         DateCommon::getTime(item.validFrom));
+
     work.exec_params(query_birth_place, *item.id, *item.birthPlace->id);
 
     work.commit();

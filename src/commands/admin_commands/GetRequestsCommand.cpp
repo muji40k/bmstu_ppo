@@ -39,11 +39,11 @@ catch (CommonTimeChangeableRepositoryException &er)
     throw CALL_EX_MSG(RepositoryGetRequestsCommandException, er.what());
 }
 
-const std::shared_ptr<RequestSet> &GetRequestsCommand::result(void)
+const RequestSet &GetRequestsCommand::result(void)
 {
     if (nullptr == this->set)
         throw CALL_EX(NotPrerformedGetRequestsCommandException);
 
-    return this->set;
+    return *this->set;
 }
 

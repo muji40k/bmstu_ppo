@@ -24,6 +24,10 @@ catch (NotAuthenticatedUserRequestManagerException &)
 {
     throw CALL_EX(NotAuthenticatedFindHumanCommandException);
 }
+catch (NotAuthorizedUserRequestManagerException &)
+{
+    throw CALL_EX(NotAuthorizedFindHumanCommandException);
+}
 catch (UnspecifiedDataUserRequestManagerException &er)
 {
     throw CALL_EX_MSG(WrongDataFindHumanCommandException, er.what());

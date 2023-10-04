@@ -25,6 +25,8 @@ DEF_EX(AllocationSetHumanCommandException, CommonSetHumanCommandException,
        "Unable to allocate SetHumanManager");
 DEF_EX(NotAuthenticatedSetHumanCommandException, CommonSetHumanCommandException,
        "User not authenticated");
+DEF_EX(NotAuthorizedSetHumanCommandException, CommonSetHumanCommandException,
+       "User not authorized");
 DEF_EX(NotFoundSetHumanCommandException, CommonSetHumanCommandException,
        "Requested human not found");
 DEF_EX(WrongDataSetHumanCommandException, CommonSetHumanCommandException, "");

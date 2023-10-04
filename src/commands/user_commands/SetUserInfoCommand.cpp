@@ -21,6 +21,10 @@ catch (NotAuthenticatedUserInfoManagerException &)
 {
     throw CALL_EX(NotAuthenticatedSetUserInfoCommandException);
 }
+catch (NotAuthorizedUserInfoManagerException &)
+{
+    throw CALL_EX(NotAuthorizedSetUserInfoCommandException);
+}
 catch (UnexpectedKeyUserInfoManagerException &)
 {
     throw CALL_EX(UnexpectedKeySetUserInfoCommandException);

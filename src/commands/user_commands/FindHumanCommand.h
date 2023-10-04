@@ -29,6 +29,8 @@ DEF_EX(AllocationFindHumanCommandException, CommonFindHumanCommandException,
        "Unable to allocate FindHumanManager");
 DEF_EX(NotAuthenticatedFindHumanCommandException, CommonFindHumanCommandException,
        "User not authenticated");
+DEF_EX(NotAuthorizedFindHumanCommandException, CommonFindHumanCommandException,
+       "User not authorized");
 DEF_EX(WrongDataFindHumanCommandException, CommonFindHumanCommandException, "");
 DEF_EX(RepositoryFindHumanCommandException, CommonFindHumanCommandException, "");
 
