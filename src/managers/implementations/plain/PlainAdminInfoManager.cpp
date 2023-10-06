@@ -1,13 +1,13 @@
-#include "AdminInfoManager.h"
+#include "PlainAdminInfoManager.h"
 
 #include "LoginManager.h"
 #include "AuthorizationManager.h"
 
-AdminInfoManager::AdminInfoManager(AppContext &context)
+PlainAdminInfoManager::PlainAdminInfoManager(AppContext &context)
     : context(context)
 {}
 
-void AdminInfoManager::process(std::string hash, AdminInfoStrategy &strategy)
+void PlainAdminInfoManager::process(std::string hash, AdminInfoStrategy &strategy)
 {
     auto login = this->context.getLoginManager();
 

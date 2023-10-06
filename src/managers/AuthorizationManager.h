@@ -8,28 +8,17 @@
 #include "manager_exceptions.h"
 
 #include "AppContext.h"
-#include "User.h"
 #include "AuthorizationHook.h"
 
 class AuthorizationManager
 {
     public:
-        AuthorizationManager(AppContext &context,
-                             std::shared_ptr<AuthorizationHook> hook = nullptr);
         virtual ~AuthorizationManager(void) = default;
 
         virtual bool authorize(const std::string &hash,
-                               std::initializer_list<std::string> roles);
+                               std::initializer_list<std::string> roles) = 0;
         virtual bool authorize(const std::string &hash,
-                               std::list<std::string> roles);
-
-    private:
-        template <typename Container>
-        bool innerAuthorize(const std::string &hash,
-                            const Container &container);
-
-        AppContext &context;
-        std::shared_ptr<AuthorizationHook> hook = nullptr;
+                               std::list<std::string> roles) = 0;
 };
 
 DEF_EX(CommonAuthorizationManagerException, ManagerException,

@@ -4,17 +4,18 @@
 #include "AppContext.h"
 #include "IQueryStrategy.h"
 
+#include "manager_exceptions.h"
+
 class QueryManager
 {
     public:
-        QueryManager(AppContext &context);
         virtual ~QueryManager(void) = default;
 
-        virtual void find(IQueryStrategy &strategy);
-
-    private:
-        AppContext &context;
+        virtual void find(IQueryStrategy &strategy) = 0;
 };
+
+DEF_EX(CommonQueryManagerException, ManagerException,
+       "Common QueryCommand exception");
 
 #endif
 

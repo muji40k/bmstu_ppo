@@ -1,4 +1,4 @@
-#include <LoginManager.h>
+#include <PlainLoginManager.h>
 
 #include <utility>
 
@@ -6,7 +6,7 @@
 
 #include "ValueCriteria.h"
 
-LoginManager::LoginManager(RepositoryContext &context, HashFunc func,
+PlainLoginManager::PlainLoginManager(RepositoryContext &context, HashFunc func,
                            std::shared_ptr<RegistrationHook> hook)
     : context(context), hash(func), hook(hook)
 {
@@ -14,7 +14,7 @@ LoginManager::LoginManager(RepositoryContext &context, HashFunc func,
         throw CALL_EX(HashFuncNotSetException);
 }
 
-std::string LoginManager::login(std::string email, std::string password)
+std::string PlainLoginManager::login(std::string email, std::string password)
 {
     std::shared_ptr<IUserRepository> user_repo = this->context.getUserRepository();
 
@@ -40,7 +40,7 @@ std::string LoginManager::login(std::string email, std::string password)
     return hash;
 }
 
-void LoginManager::registerUser(User user)
+void PlainLoginManager::registerUser(User user)
 {
     std::shared_ptr<IUserRepository> user_repo = this->context.getUserRepository();
 
@@ -61,7 +61,7 @@ void LoginManager::registerUser(User user)
     }
 }
 
-std::string LoginManager::update(std::string hash)
+std::string PlainLoginManager::update(std::string hash)
 {
     if (!this->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedException);
@@ -94,12 +94,12 @@ std::string LoginManager::update(std::string hash)
     return new_hash;
 }
 
-void LoginManager::exit(std::string hash)
+void PlainLoginManager::exit(std::string hash)
 {
     this->authenticated.erase(hash);
 }
 
-bool LoginManager::isAuthenticated(std::string hash) const
+bool PlainLoginManager::isAuthenticated(std::string hash) const
 {
     auto iter = this->authenticated.find(hash);
 
@@ -109,7 +109,7 @@ bool LoginManager::isAuthenticated(std::string hash) const
     return true;
 }
 
-const User &LoginManager::getAuthenticated(std::string hash) const
+const User &PlainLoginManager::getAuthenticated(std::string hash) const
 {
     if (!this->isAuthenticated(hash))
         throw CALL_EX(NotAuthenticatedException);

@@ -13,15 +13,10 @@
 class UserRequestManager
 {
     public:
-        UserRequestManager(AppContext &context, UserMapper &mapper);
         virtual ~UserRequestManager(void) = default;
 
-        virtual std::list<UserMapper::Map> findHuman(std::string hash, const UserMapper::Map &data) const;
-        virtual void setHuman(std::string hash, const UserMapper::Map &data) const;
-
-    private:
-        AppContext &context;
-        UserMapper &mapper;
+        virtual std::list<UserMapper::Map> findHuman(std::string hash, const UserMapper::Map &data) const = 0;
+        virtual void setHuman(std::string hash, const UserMapper::Map &data) const = 0;
 };
 
 DEF_EX(CommonUserRequestManagerException, ManagerException,

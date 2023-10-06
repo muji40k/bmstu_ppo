@@ -1,4 +1,4 @@
-#include "UserInfoManager.h"
+#include "PlainUserInfoManager.h"
 
 #include <utility>
 
@@ -17,11 +17,11 @@
 #include "Human.h"
 #include "UserHuman.h"
 
-UserInfoManager::UserInfoManager(AppContext &context, UserMapper &mapper)
+PlainUserInfoManager::PlainUserInfoManager(AppContext &context, UserMapper &mapper)
     : context(context), mapper(mapper)
 {}
 
-UserMapper::Map UserInfoManager::getInfo(std::string hash) const
+UserMapper::Map PlainUserInfoManager::getInfo(std::string hash) const
 {
     auto login = this->context.getLoginManager();
 
@@ -43,7 +43,7 @@ UserMapper::Map UserInfoManager::getInfo(std::string hash) const
     return out;
 }
 
-void UserInfoManager::updateInfo(std::string hash, const UserMapper::Map &map)
+void PlainUserInfoManager::updateInfo(std::string hash, const UserMapper::Map &map)
 {
     auto login = this->context.getLoginManager();
 
@@ -74,12 +74,12 @@ void UserInfoManager::updateInfo(std::string hash, const UserMapper::Map &map)
     repo->update(user);
 }
 
-bool UserInfoManager::isHuman(std::string hash) const
+bool PlainUserInfoManager::isHuman(std::string hash) const
 {
     return this->getUserHuman(hash).isHuman();
 }
 
-UserMapper::Map UserInfoManager::getHuman(std::string hash) const
+UserMapper::Map PlainUserInfoManager::getHuman(std::string hash) const
 {
     UserHuman uh = this->getUserHuman(hash);
 
@@ -94,7 +94,7 @@ UserMapper::Map UserInfoManager::getHuman(std::string hash) const
     return out;
 }
 
-UserHuman UserInfoManager::getUserHuman(std::string hash) const
+UserHuman PlainUserInfoManager::getUserHuman(std::string hash) const
 {
     auto login = this->context.getLoginManager();
 

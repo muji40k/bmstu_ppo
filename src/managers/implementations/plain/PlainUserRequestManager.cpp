@@ -1,4 +1,4 @@
-#include "UserRequestManager.h"
+#include "PlainUserRequestManager.h"
 
 #include <utility>
 
@@ -13,7 +13,7 @@
 
 #include "MergeRequest.h"
 
-UserRequestManager::UserRequestManager(AppContext &context, UserMapper &mapper)
+PlainUserRequestManager::PlainUserRequestManager(AppContext &context, UserMapper &mapper)
     : context(context), mapper(mapper)
 {}
 
@@ -32,7 +32,7 @@ static std::shared_ptr<ValueCriteria> parse_argument(UserMapper::Map::const_iter
     return std::make_shared<ValueCriteria>((*viter).second, "=", (*iter).second);
 }
 
-std::list<UserMapper::Map> UserRequestManager::findHuman(std::string hash, const UserMapper::Map &data) const
+std::list<UserMapper::Map> PlainUserRequestManager::findHuman(std::string hash, const UserMapper::Map &data) const
 {
     if (data.empty())
         throw CALL_EX(EmptyDataUserRequestManagerException);
@@ -74,7 +74,7 @@ std::list<UserMapper::Map> UserRequestManager::findHuman(std::string hash, const
     return out;
 }
 
-void UserRequestManager::setHuman(std::string hash, const UserMapper::Map &data) const
+void PlainUserRequestManager::setHuman(std::string hash, const UserMapper::Map &data) const
 {
     if (data.empty())
         throw CALL_EX(EmptyDataUserRequestManagerException);

@@ -1,0 +1,27 @@
+{
+    "interface": "tui",
+    "interfaces": {
+        "tui": {}
+    },
+
+    "implementation": "logged",
+    "implementations": {
+        "plain": {},
+        "logged": {
+            "level": "all",
+            "file": "log.txt"
+        }
+    },
+
+    "connection": "psql",
+    "connections": {
+        "psql": {
+            "user": "postgres",
+            "host": "localhost",
+            "password": "postgres",
+            "dbname": "humankind",
+            "port": 5432,
+            "timezone": "Europe/Moscow"
+        }
+    }
+}

@@ -40,15 +40,10 @@ class RequestSet
 class AdminRequestManager
 {
     public:
-        AdminRequestManager(AppContext &context, RequestHandlerSet &handler);
         virtual ~AdminRequestManager(void) = default;
 
-        virtual RequestSet getRequests(std::string hash);
-        virtual void updateRequest(std::string hash, const MergeRequest &request);
-
-    private:
-        AppContext &context;
-        RequestHandlerSet &handler;
+        virtual RequestSet getRequests(std::string hash) = 0;
+        virtual void updateRequest(std::string hash, const MergeRequest &request) = 0;
 };
 
 DEF_EX(CommonRequestSetIteratorException, ManagerException,

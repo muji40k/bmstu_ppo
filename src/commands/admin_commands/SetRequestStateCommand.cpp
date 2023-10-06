@@ -28,6 +28,10 @@ catch (NotAuthorizedAdminRequestManagerException &)
 {
     throw CALL_EX(NotAuthorizedSetRequestStateCommandException);
 }
+catch (NoHandlerAdminRequestManagerException &)
+{
+    throw CALL_EX(NoHandlerAdminRequestManagerException);
+}
 catch (CommonReadRepositoryException &er)
 {
     throw CALL_EX_MSG(RepositorySetRequestStateCommandException, er.what());

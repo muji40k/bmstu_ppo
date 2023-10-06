@@ -16,22 +16,16 @@ class LoginManager
 {
     public:
         using HashFunc = std::string (*)(const User &user);
-        LoginManager(RepositoryContext &context, HashFunc func,
-                     std::shared_ptr<RegistrationHook> hook = nullptr);
+
+    public:
         virtual ~LoginManager(void) = default;
 
-        virtual std::string login(std::string email, std::string password);
-        virtual void registerUser(User user);
-        virtual std::string update(std::string hash);
-        virtual void exit(std::string hash);
-        virtual bool isAuthenticated(std::string hash) const;
-        virtual const User &getAuthenticated(std::string hash) const;
-
-    private:
-        RepositoryContext &context;
-        HashFunc hash;
-        std::shared_ptr<RegistrationHook> hook = nullptr;
-        std::unordered_map<std::string, User> authenticated;
+        virtual std::string login(std::string email, std::string password) = 0;
+        virtual void registerUser(User user) = 0;
+        virtual std::string update(std::string hash) = 0;
+        virtual void exit(std::string hash) = 0;
+        virtual bool isAuthenticated(std::string hash) const = 0;
+        virtual const User &getAuthenticated(std::string hash) const = 0;
 };
 
 DEF_EX(CommonLoginManagerException, ManagerException,

@@ -16,6 +16,10 @@ catch (AllocationAppContextException &)
 {
     throw CALL_EX(AllocationUserInfoCommandException);
 }
+catch (AllocationRepositoryContextException &)
+{
+    throw CALL_EX(AllocationUserInfoCommandException);
+}
 catch (NotAuthenticatedUserInfoManagerException &)
 {
     throw CALL_EX(NotAuthenticatedUserInfoCommandException);

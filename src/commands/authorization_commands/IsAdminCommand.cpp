@@ -10,11 +10,7 @@ IsAdminCommand::IsAdminCommand(const std::string hash)
 void IsAdminCommand::execute(AppContext &context)
 try
 {
-    std::shared_ptr<LoginManager> login = context.getLoginManager();
     std::shared_ptr<AuthorizationManager> authorizer = context.getAuthorizationManager();
-
-    if (!login->isAuthenticated(this->hash))
-        throw CALL_EX(NotAuthenticatedIsAdminCommandException);
 
     static const std::list<std::string> roles = {"admin"};
     this->res = authorizer->authorize(this->hash, roles);
@@ -22,6 +18,10 @@ try
 catch (AllocationAppContextException &er)
 {
     throw CALL_EX_MSG(AllocationIsAdminCommandException, er.what());
+}
+catch (NotAuthenticatedAuthorizationManagerException &)
+{
+    throw CALL_EX(NotAuthenticatedIsAdminCommandException);
 }
 catch (CommonReadRepositoryException &er)
 {

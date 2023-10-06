@@ -14,19 +14,12 @@ class UserMapper;
 class UserInfoManager
 {
     public:
-        UserInfoManager(AppContext &context, UserMapper &mapper);
         virtual ~UserInfoManager(void) = default;
 
-        virtual UserMapper::Map getInfo(std::string hash) const;
-        virtual void updateInfo(std::string hash, const UserMapper::Map &map);
-        virtual bool isHuman(std::string hash) const;
-        virtual UserMapper::Map getHuman(std::string hash) const;
-
-    private:
-        UserHuman getUserHuman(std::string hash) const;
-
-        AppContext &context;
-        UserMapper &mapper;
+        virtual UserMapper::Map getInfo(std::string hash) const = 0;
+        virtual void updateInfo(std::string hash, const UserMapper::Map &map) = 0;
+        virtual bool isHuman(std::string hash) const = 0;
+        virtual UserMapper::Map getHuman(std::string hash) const = 0;
 };
 
 DEF_EX(CommonUserInfoManagerException, ManagerException,

@@ -15,13 +15,9 @@ class AdminInfoStrategy
 class AdminInfoManager
 {
     public:
-        AdminInfoManager(AppContext &context);
         virtual ~AdminInfoManager(void) = default;
 
-        virtual void process(std::string hash, AdminInfoStrategy &strategy);
-
-    private:
-        AppContext &context;
+        virtual void process(std::string hash, AdminInfoStrategy &strategy) = 0;
 };
 
 DEF_EX(CommonAdminInfoStrategyException, ManagerException,

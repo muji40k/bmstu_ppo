@@ -1,4 +1,4 @@
-#include "AuthorizationManager.h"
+#include "PlainAuthorizationManager.h"
 
 #include <list>
 
@@ -9,25 +9,25 @@
 #include "LogicCriteriaBuilder.h"
 #include "ValueCriteria.h"
 
-AuthorizationManager::AuthorizationManager(AppContext &context,
+PlainAuthorizationManager::PlainAuthorizationManager(AppContext &context,
                                            std::shared_ptr<AuthorizationHook> hook)
     : context(context), hook(hook)
 {}
 
-bool AuthorizationManager::authorize(const std::string &hash,
+bool PlainAuthorizationManager::authorize(const std::string &hash,
                                      std::initializer_list<std::string> roles)
 {
     return this->innerAuthorize<std::initializer_list<std::string>>(hash, roles);
 }
 
-bool AuthorizationManager::authorize(const std::string &hash,
+bool PlainAuthorizationManager::authorize(const std::string &hash,
                                      std::list<std::string> roles)
 {
     return this->innerAuthorize<std::list<std::string>>(hash, roles);
 }
 
 template <typename Container>
-bool AuthorizationManager::innerAuthorize(const std::string &hash,
+bool PlainAuthorizationManager::innerAuthorize(const std::string &hash,
                                           const Container &container)
 {
     if (0 == container.size())

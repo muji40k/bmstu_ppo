@@ -26,6 +26,8 @@ DEF_EX(NotAuthenticatedSetRequestStateCommandException, CommonSetRequestStateCom
        "Hash doesn't specify any user");
 DEF_EX(NotAuthorizedSetRequestStateCommandException, CommonSetRequestStateCommandException,
        "User isn't an admin");
+DEF_EX(NoHandlerSetRequestStateCommandException, CommonSetRequestStateCommandException,
+       "State isn't supported");
 DEF_EX(RepositorySetRequestStateCommandException, CommonSetRequestStateCommandException, "");
 
 #endif
