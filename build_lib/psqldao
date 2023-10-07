@@ -1,0 +1,6 @@
+src/managers/authorization_hooks/psql/
+src/repositories/criterias/visitors/psql
+src/repositories/criterias/visitors/builders/psql
+src/repositories/criterias/misc/psql/
+src/repositories/psql
+src/repositories/psql/generic_iterator/

@@ -1,0 +1,3 @@
+src/mvp/models/domain_models
+src/mvp/models/domain_models/mappers
+src/mvp/models/domain_models/mappers/generic
